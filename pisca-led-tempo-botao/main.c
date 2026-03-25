@@ -74,6 +74,8 @@ int main() {
             rise = 0;
             tempo_f = get_absolute_time();
             int64_t duration = absolute_time_diff_us(tempo_i,tempo_f);
+            led_state = 1;
+            gpio_put(LED_PIN, 1);
             add_repeating_timer_us(duration / 2, timer_callback, NULL, &timer_id);
         }
     }
