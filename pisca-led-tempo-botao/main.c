@@ -67,6 +67,7 @@ int main() {
         if (fall){
             fall = 0;
             tempo_i = get_absolute_time();
+            led_state = 0;
             gpio_put(LED_PIN,0);
             cancel_repeating_timer(&timer_id);
         }
@@ -75,7 +76,7 @@ int main() {
             rise = 0;
             tempo_f = get_absolute_time();
             int64_t duration = absolute_time_diff_us(tempo_i,tempo_f);
-            add_repeating_timer_us(duration, timer_callback, NULL, &timer_id);
+            add_repeating_timer_us(duration/ 2, timer_callback, NULL, &timer_id);
         }
     }
     return 0;
